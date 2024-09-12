@@ -34,6 +34,23 @@
 					"message": "Ingest Pipeline Failed, go back and fix",
 					"errorCode": "401"
 				}
+			},
+			{
+				"name": "Wait1",
+				"description": "just showing dependencies work",
+				"type": "Wait",
+				"dependsOn": [
+					{
+						"activity": "Execute Pipeline1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 1
+				}
 			}
 		],
 		"annotations": [],
