@@ -1,0 +1,82 @@
+{
+	"name": "SourceDataset_v14",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "PatientInfo.csv",
+				"container": "cheap-blob-storage"
+			},
+			"columnDelimiter": ",",
+			"rowDelimiter": "\n",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "patient_id",
+				"type": "String"
+			},
+			{
+				"name": "sex",
+				"type": "String"
+			},
+			{
+				"name": "age",
+				"type": "String"
+			},
+			{
+				"name": "country",
+				"type": "String"
+			},
+			{
+				"name": "province",
+				"type": "String"
+			},
+			{
+				"name": "city",
+				"type": "String"
+			},
+			{
+				"name": "infection_case",
+				"type": "String"
+			},
+			{
+				"name": "infected_by",
+				"type": "String"
+			},
+			{
+				"name": "contact_number",
+				"type": "String"
+			},
+			{
+				"name": "symptom_onset_date",
+				"type": "String"
+			},
+			{
+				"name": "confirmed_date",
+				"type": "String"
+			},
+			{
+				"name": "released_date",
+				"type": "String"
+			},
+			{
+				"name": "deceased_date",
+				"type": "String"
+			},
+			{
+				"name": "state\r",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

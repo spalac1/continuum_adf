@@ -1,0 +1,91 @@
+{
+	"name": "dataflow1",
+	"properties": {
+		"type": "MappingDataFlow",
+		"typeProperties": {
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "SourceDataset_v14",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				},
+				{
+					"dataset": {
+						"referenceName": "DelimitedText1",
+						"type": "DatasetReference"
+					},
+					"name": "source2"
+				}
+			],
+			"sinks": [
+				{
+					"dataset": {
+						"referenceName": "DestinationDataset_v14",
+						"type": "DatasetReference"
+					},
+					"name": "sink1"
+				}
+			],
+			"transformations": [
+				{
+					"name": "join1"
+				},
+				{
+					"name": "aggregate1"
+				}
+			],
+			"scriptLines": [
+				"source(output(",
+				"          patient_id as string,",
+				"          sex as string,",
+				"          age as string,",
+				"          country as string,",
+				"          province as string,",
+				"          city as string,",
+				"          infection_case as string,",
+				"          infected_by as string,",
+				"          contact_number as string,",
+				"          symptom_onset_date as string,",
+				"          confirmed_date as string,",
+				"          released_date as string,",
+				"          deceased_date as string,",
+				"          {state\\r} as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     limit: 100,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source(output(",
+				"          code as string,",
+				"          province as string,",
+				"          city as string,",
+				"          latitude as string,",
+				"          longitude as string,",
+				"          elementary_school_count as string,",
+				"          kindergarten_count as string,",
+				"          university_count as string,",
+				"          academy_ratio as string,",
+				"          elderly_population_ratio as string,",
+				"          elderly_alone_ratio as string,",
+				"          nursing_home_count as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source2",
+				"source1, source2 join(source1@city == source2@city,",
+				"     joinType:'left',",
+				"     matchType:'exact',",
+				"     ignoreSpaces: false,",
+				"     broadcast: 'auto')~> join1",
+				"join1 aggregate(groupBy(age),",
+				"     average_nursing_home_count = avg(toInteger(nursing_home_count))) ~> aggregate1",
+				"aggregate1 sink(allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> sink1"
+			]
+		}
+	}
+}

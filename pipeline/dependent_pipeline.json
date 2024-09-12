@@ -1,0 +1,43 @@
+{
+	"name": "dependent_pipeline",
+	"properties": {
+		"activities": [
+			{
+				"name": "Execute Pipeline1",
+				"type": "ExecutePipeline",
+				"dependsOn": [],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "CopyPipeline_v14",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true
+				}
+			},
+			{
+				"name": "Fail1",
+				"type": "Fail",
+				"dependsOn": [
+					{
+						"activity": "Execute Pipeline1",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"message": "Ingest Pipeline Failed, go back and fix",
+					"errorCode": "401"
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2024-09-12T18:49:24Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

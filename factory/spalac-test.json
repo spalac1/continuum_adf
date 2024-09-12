@@ -1,0 +1,9 @@
+{
+	"name": "spalac-test",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "882bf77d-a426-4734-a2ed-265b2b3e08df",
+		"tenantId": "aa376596-b13e-480a-a146-e1fa1b673070"
+	}
+}

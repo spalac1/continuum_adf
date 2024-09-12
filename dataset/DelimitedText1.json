@@ -1,0 +1,73 @@
+{
+	"name": "DelimitedText1",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": "Region.csv",
+				"container": "cheap-blob-storage"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "code",
+				"type": "String"
+			},
+			{
+				"name": "province",
+				"type": "String"
+			},
+			{
+				"name": "city",
+				"type": "String"
+			},
+			{
+				"name": "latitude",
+				"type": "String"
+			},
+			{
+				"name": "longitude",
+				"type": "String"
+			},
+			{
+				"name": "elementary_school_count",
+				"type": "String"
+			},
+			{
+				"name": "kindergarten_count",
+				"type": "String"
+			},
+			{
+				"name": "university_count",
+				"type": "String"
+			},
+			{
+				"name": "academy_ratio",
+				"type": "String"
+			},
+			{
+				"name": "elderly_population_ratio",
+				"type": "String"
+			},
+			{
+				"name": "elderly_alone_ratio",
+				"type": "String"
+			},
+			{
+				"name": "nursing_home_count",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
